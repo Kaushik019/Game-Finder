@@ -1,31 +1,11 @@
-import { Box, Text, Link, Button } from "@chakra-ui/react";
-
-interface Props {
-  colorMode: String;
-  toggleColorMode: () => void;
-}
-
-const Navbar = ({ toggleColorMode }: Props) => {
+import { HStack, Image, Text } from "@chakra-ui/react";
+import logo from "../../assets/logo.webp";
+const Navbar = () => {
   return (
-    <>
-      <Box bg="black" h="100px" p={10} color="white" display="flex">
-        <Text fontSize={"xl"} fontWeight="extrabold">
-          R A W G
-        </Text>
-        <Box>
-          <Link m={2} fontSize={"md"}>
-            LOG IN
-          </Link>
-          <Link m={2} fontSize={"md"}>
-            SIGN UP
-          </Link>
-          <Link m={2} fontSize={"md"}>
-            API
-          </Link>
-          <Button onClick={toggleColorMode}>...</Button>
-        </Box>
-      </Box>
-    </>
+    <HStack>
+      <Image src={logo} boxSize="60px" />
+      <Text>Navbar</Text>
+    </HStack>
   );
 };
 
