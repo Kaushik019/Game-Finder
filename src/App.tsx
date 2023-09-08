@@ -20,7 +20,6 @@ function App() {
       </Show>
       <GridItem area={"main"}>
         <GameGrid />
-        ABCD
       </GridItem>
     </Grid>
   );
