@@ -3,6 +3,7 @@ import {
   Card,
   CardBody,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -27,6 +28,10 @@ const GenreList = ({ onSelectGenre: selectGenre, selectedGenre }: Props) => {
 
   return (
     <>
+      <Heading fontSize="2xl" marginBottom={2}>
+        Genres
+      </Heading>
+
       {isLoading &&
         skeletons.map((skeleton) => (
           <Card key={skeleton} margin="6px" width="90%" height="40px">
@@ -46,13 +51,15 @@ const GenreList = ({ onSelectGenre: selectGenre, selectedGenre }: Props) => {
               <Image
                 boxSize="32px"
                 src={getCroppedImageUrl(genre.image_background)}
+                objectFit="cover"
                 borderRadius={8}
               />
               <Button
+                whiteSpace="normal"
+                textAlign="left"
                 onClick={() => selectGenre(genre)}
                 variant="link"
                 fontSize={genre.id === selectedGenre?.id ? "xl" : "lg"}
-                overflow="hidden"
                 fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
               >
                 {genre.name}
