@@ -3,12 +3,13 @@ import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useGames from "../hooks/useGames";
 import GameCardWrapper from "./GameCardWrapper";
-import GameGridSkeleton from "./GameGridSkeleton";
+import GameGridContainer from "./GameGridContainer";
+import { GameGridSkeleton } from "./GridSkeleton";
 
 const GameGrid = () => {
   const { data, error, isLoading, hasNextPage, fetchNextPage } = useGames();
 
-  if (error) return <p>{error.message}</p>;
+  if (error) return <p>Unable to Load Games</p>;
 
   const fetchGamesCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
@@ -18,14 +19,15 @@ const GameGrid = () => {
       dataLength={fetchGamesCount}
       next={() => fetchNextPage()}
       hasMore={!!hasNextPage}
-      loader={<GameGridSkeleton isLoading={true} />}
+      loader={<GameGridSkeleton />}
       endMessage={
         <Box marginBottom={5} textAlign="center">
           <b>Yay! You have seen it all</b>
         </Box>
       }
     >
-      <GameGridSkeleton isLoading={isLoading}>
+      {isLoading && <GameGridSkeleton />}
+      <GameGridContainer>
         {data?.pages.map((page, index) => (
           <React.Fragment key={index}>
             {page.results.map((game) => (
@@ -33,7 +35,7 @@ const GameGrid = () => {
             ))}
           </React.Fragment>
         ))}
-      </GameGridSkeleton>
+      </GameGridContainer>
     </InfiniteScroll>
   );
 };

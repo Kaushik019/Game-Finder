@@ -1,26 +1,20 @@
 import {
   Button,
-  Card,
-  CardBody,
   HStack,
   Heading,
   Image,
   List,
   ListItem,
-  Skeleton,
-  SkeletonText,
 } from "@chakra-ui/react";
 import useGameQueryStore from "../hooks/useGameQueryStore";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
+import { GenreSkeleton } from "./GridSkeleton";
 
 const GenreList = () => {
   const { data: genres, isLoading, error } = useGenres();
   const setSelectedGenreId = useGameQueryStore((s) => s.setGenreId);
   const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
-  const skeletons = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ];
 
   if (error) return null;
 
@@ -30,17 +24,7 @@ const GenreList = () => {
         Genres
       </Heading>
 
-      {isLoading &&
-        skeletons.map((skeleton) => (
-          <Card key={skeleton} margin="6px" width="90%" height="40px">
-            <HStack>
-              <Skeleton />
-              <CardBody>
-                <SkeletonText noOfLines={1} />
-              </CardBody>
-            </HStack>
-          </Card>
-        ))}
+      {isLoading && <GenreSkeleton count={20} />}
 
       <List>
         {genres?.results.map((genre) => (
