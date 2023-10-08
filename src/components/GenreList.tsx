@@ -6,7 +6,7 @@ import {
   List,
   ListItem,
 } from "@chakra-ui/react";
-import useGameQueryStore from "../hooks/useGameQueryStore";
+import useGameQueryStore from "../stores/useGameQueryStore";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 import { GenreSkeleton } from "./GridSkeleton";
