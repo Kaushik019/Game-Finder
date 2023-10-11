@@ -24,7 +24,7 @@ const GenreList = () => {
         Genres
       </Heading>
 
-      {isLoading && <GenreSkeleton count={20} />}
+      {isLoading && <GenreSkeleton count={genres?.results.length} />}
 
       <List>
         {genres?.results.map((genre) => (
