@@ -1,7 +1,7 @@
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
-import { Game } from "../entities/Game";
+import Game from "../entities/Game";
 
 interface Props {
   game?: Game;
